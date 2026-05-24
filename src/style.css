@@ -1,0 +1,6 @@
+@import "tailwindcss";
+.active-filter {
+  border-color: #7f1d1d;  
+  color: #fca5a5;           
+  background-color: #1c0a0a;
+}
