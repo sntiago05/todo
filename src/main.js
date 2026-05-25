@@ -75,17 +75,28 @@ let tasks = [];
  * @param {boolean} isDark - Pass `true` to enable dark mode, `false` for light mode.
  */
 function applyDarkMode(isDark) {
+  const taskList = document.querySelectorAll(".task-line")
   if (isDark) {
     appContainer.classList.remove("bg-white", "text-zinc-900");
     appContainer.classList.add("bg-black", "text-zinc-200");
     taskInput.classList.remove("text-black", "bg-white");
     taskInput.classList.add("text-zinc-200", "bg-zinc-900");
+    taskList.forEach(
+      t => {
+        t.classList.add("bg-zinc-900", "tex-white")
+        t.classList.remove("bg-white","text-zinc-900")
+      })
     darkModeToggle.textContent = "Light";
   } else {
     appContainer.classList.remove("bg-black", "text-zinc-200");
     appContainer.classList.add("bg-white", "text-zinc-900");
     taskInput.classList.add("text-black", "bg-white");
     taskInput.classList.remove("text-zinc-200", "bg-zinc-900");
+     taskList.forEach(
+      t => {
+        t.classList.remove("bg-zinc-900", "tex-white")
+        t.classList.add("bg-white","text-zinc-900")
+      })
     darkModeToggle.textContent = "Dark";
   }
   localStorage.setItem("darkMode", JSON.stringify(isDark));
@@ -179,7 +190,7 @@ function renderTasks() {
   filtered.forEach((task) => {
     const li = document.createElement("li");
     li.className =
-      "bg-zinc-900 border border-zinc-800 p-4 rounded-xl flex justify-between items-center shadow-lg gap-3";
+      "task-line bg-zinc-900 border border-zinc-800 p-4 rounded-xl flex justify-between items-center shadow-lg gap-3";
 
     // Title — struck-through when the task is completed.
     const span = document.createElement("span");
